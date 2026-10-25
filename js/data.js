@@ -51,7 +51,7 @@ const CONFIG = {
       ],
       images: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp1a8u6bmaeu3b1eoT-34k0UAYgZvcFJ58dl2RKeIfIQ&s=10",
+          src: "images/hagiang.jpg",
         },
       ],
       en: {
@@ -79,7 +79,7 @@ const CONFIG = {
       tips: "Có trạm dừng chân, WC và quán nước.",
       images: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzXhz-SA49M2rteH1FPVytYIl3403rpmbrp5hzbHIvIlC6L0FzfUGxliI&s=10",
+          src: "images/quanba.jpg",
         },
       ],
       en: {
@@ -101,7 +101,7 @@ const CONFIG = {
       info: [["Việc cần làm", "Ăn uống, đổ xăng"]],
       images: [
         {
-          src: "https://baohagiang.vn/file/4028eaa4679b32c401679c0c74382a7e/092024/thi_tran_ym_2_20240902141920.jpg",
+          src: "images/yenminh.jpg",
         },
       ],
 
@@ -121,7 +121,7 @@ const CONFIG = {
       tips: "Đứng sát mép đường, cẩn thận xe tải đổ dốc.",
       images: [
         {
-          src: "https://lh3.googleusercontent.com/grass-cs/AABkmLebEb0FXfpYeCRhZTKw3EQ15IRUYLrCBxGXBkQMADqrFCZ9F5YchKtxKNPYmZBvdC2oe8H4qQM1R44LXlNA1XQ82WczeeMh4Q2p1fBQuo7Xxe3oKqbX55flnbRGjU111cYOb5ViYBWSTnAE=w289-h312-n-k-no",
+          src: "images/thamma.jpg",
         },
       ],
       en: {
@@ -144,7 +144,7 @@ const CONFIG = {
       ],
       images: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZdN2i0pUgn-EfgllJH2dBXNvYVVG-HPmzJjh1ePmFYw&s=10",
+          src: "images/nhavuong.jpg",
         },
       ],
       en: {
@@ -169,7 +169,7 @@ const CONFIG = {
       tips: "Gió lớn, mang áo khoác. Lên sớm ngắm bình minh – hỏi trước giờ mở cửa cột cờ.",
       images: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKiEuO6jUNnYaA41p-mjJLKLA9tIk5RrRfdpK_lnQa-Q&s=10",
+          src: "images/lungcu.jpg",
         },
       ],
       en: {
@@ -191,7 +191,7 @@ const CONFIG = {
       info: [["Việc cần làm", "Nhận phòng, ăn tối, dạo phố"]],
       images: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSrerkXH6WJlJnD09Uq7B4ndw7gtsXj62AfMhgQc04g&s=10",
+          src: "images/dongvan.jpg",
         },
       ],
       en: {
@@ -210,7 +210,7 @@ const CONFIG = {
       tips: "Dừng tại khu vực Mã Pì Lèng Panorama để chụp ảnh.",
       images: [
         {
-          src: "https://viptrip.vn/public/upload/chinh-phuc-deo-ma-pi-leng-tu-dai-dinh-deo-cua-vung-nui-dat-bac-6-1642064878_09-07-2025_438315690.jpeg",
+          src: "images/mapileng.jpg",
         },
       ],
       en: {
@@ -233,7 +233,7 @@ const CONFIG = {
       tips: "Đường xuống bến dốc, đi giày bám tốt.",
       images: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuH8XyQ6EYA_yUfl9wCmiF-C2I9gEFOHAPW1U3v5qpow&s=10",
+          src: "images/nhoque.jpg",
         },
       ],
       en: {
@@ -255,7 +255,7 @@ const CONFIG = {
       info: [["Việc cần làm", "Ăn trưa, đổ xăng"]],
       images: [
         {
-          src: "https://images.baoangiang.com.vn/image/news/2026/20260107/origin/giu-hon-cao-nguyen-d_6322_1767780119.jpg",
+          src: "images/meovac.jpg",
         },
       ],
       en: {
@@ -283,7 +283,7 @@ const CONFIG = {
       tips: "Ít cây xăng – đổ đầy ở Mèo Vạc trước khi đi.",
       images: [
         {
-          src: "https://mia.vn/media/uploads/blog-du-lich/kham-pha-du-gia-ha-giang-xu-ban-tien-noi-dia-dau-to-quoc-01-1661957004.jpeg",
+          src: "images/dugia.jpg",
         },
       ],
       en: {
