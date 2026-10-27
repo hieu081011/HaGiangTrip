@@ -148,6 +148,11 @@
           <div class="sch-days" id="schChips"></div>
           <div class="sch-wrap" id="schList"></div>
         </section>
+
+        <section class="view" id="foodView" aria-label="Ăn uống">
+          <div class="sch-days" id="foodChips"></div>
+          <div class="sch-wrap" id="foodList"></div>
+        </section>
       </main>
 
       <nav class="tabs" role="tablist">
@@ -178,6 +183,20 @@
             <path d="M3 10h18M8 3v4M16 3v4" />
           </svg>
           <span>Lịch trình</span>
+        </button>
+        <button role="tab" aria-selected="false" data-view="foodView">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10" />
+            <path d="M17 3c-2 0-3 2-3 6h3v12" />
+          </svg>
+          <span>Ăn uống</span>
         </button>
       </nav>
     </div>

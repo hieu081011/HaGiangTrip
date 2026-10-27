@@ -21,6 +21,11 @@ const STR = {
   now: "Đang diễn ra",
   showOnMap: "Xem {name} trên bản đồ",
   tabMap: "Bản đồ",
+  nSpots: "{n} quán",
+  noSpots: "Chưa có quán — thêm vào CONFIG.food trong js/data.js",
+  reviews: "{n} đánh giá",
+  openMaps: "Google Maps",
+  noFoodPhoto: "Chưa có ảnh",
   types: {
     city: "Thị trấn",
     sight: "Tham quan",

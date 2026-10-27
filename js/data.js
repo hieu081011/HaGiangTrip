@@ -76,7 +76,6 @@ const CONFIG = {
           src: "images/yenminh.jpg",
         },
       ],
-
     },
     thamma: {
       name: "Dốc Thẩm Mã",
@@ -566,6 +565,184 @@ const CONFIG = {
           title: "Ăn tối, kết thúc hành trình",
           type: "eat",
           place: "hagiang",
+        },
+      ],
+    },
+  ],
+
+  /* -------------------------------------------------------------------
+   * ĂN UỐNG — tab "Ăn uống". Mỗi nhóm là 1 bữa ở 1 nơi; thêm quán vào `spots`.
+   *   day   : id ngày ('d1' | 'd2' | 'd3') — dùng màu của ngày đó
+   *   spots : [{
+   *     dishes  : ["Bánh cuốn trứng", "Phở gà"]   ← hiện to nhất
+   *     name    : "Tên quán"
+   *     address : "Số nhà, đường, phường/xã"
+   *     maps    : "https://maps.app.goo.gl/..."   (link Google Maps của quán;
+   *               để trống → tự tìm theo tên + địa chỉ)
+   *     rating  : 4.5        reviews : 1234      (xem trên Google Maps)
+   *     price   : "30–50k"   hours   : "6h–10h"  note : "..."  (tuỳ chọn)
+   *     images  : [{ src: "images/food-....jpg" }]
+   *   }]
+   * ------------------------------------------------------------------- */
+  // Các quán dưới đây lấy từ blog du lịch (chưa kiểm chứng) — kiểm tra lại
+  // trên Google Maps, rồi điền maps / rating / reviews / images
+  food: [
+    {
+      day: "d1",
+      meal: "Ăn sáng · Ngày 1",
+      area: "TP. Hà Giang",
+      spots: [
+        {
+          dishes: ["Phở Gà, Phở bò"],
+          name: "Phở Bà Thanh",
+          address: "108 Đường Lâm Đồng, Hà Giang 2, Việt Nam",
+          note: "Review tiktok",
+          hours: "6h–24h",
+          maps: "https://maps.app.goo.gl/kjG5UfENNHpFSizdA",
+          images: [
+            {
+              src: "images/food-pho-ba-thanh.jpg",
+            },
+          ],
+        },
+        {
+          dishes: ["Xôi thịt, chả"],
+          name: "Xôi cô Yến",
+          address: "140 Lý Tự Trọng, Hà Giang ",
+          note: "Rất đáng thử ",
+          hours: "6h–9h",
+          maps: "https://maps.app.goo.gl/GJYM7JPthHgfuQ5i9",
+          images: [
+            {
+              src: "images/food-xoi-co-yen.jpg",
+            },
+          ],
+        },
+        {
+          dishes: ["Phở ngô"],
+          name: "Phở ngô Bảo tàng",
+          address: "527 Nguyễn Trãi, Hà Giang 1 (Bảo tàng Hà Giang) ",
+          hours: "Cả ngày",
+          maps: "https://maps.app.goo.gl/LeN7KrmynwZYtSFD7",
+          images: [
+            {
+              src: "images/food-pho-ngo-bao-tang.webp",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      day: "d1",
+      meal: "Ăn trưa · Ngày 1",
+      area: "Thị trấn Yên Minh",
+      spots: [
+        {
+          dishes: ["Cơm", "Gà", "Thịt lợn mán"],
+          name: "Phong Vân Quán",
+          address: "Phong Vân Quán, Tổ 8 Trần Hưng đạo, Yên Minh,",
+          hours: "6h–22h",
+          maps: "https://maps.app.goo.gl/pULSu9KhxqPomR3e8",
+          images: [
+            {
+              src: "images/food-phong-van-quan.jpg",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      day: "d1",
+      meal: "Ăn tối · Ngày 1",
+      area: "Phố cổ Đồng Văn",
+      spots: [
+        {
+          dishes: ["Lẩu gà đen", "Món đặc trưng Đồng Văn"],
+          name: "Ethnic House lounge bar, hostel & restaurant",
+          maps: "https://maps.app.goo.gl/8KCDYoZYud9T7Dp9A",
+          rating: 4.8,
+          images: [
+            { src: "images/food-ethnic-house-1.jpg", caption: "Thực đơn: cá, dê, ngựa" },
+            { src: "images/food-ethnic-house-2.jpg", caption: "Thực đơn: cơm rang, đồ ăn nhanh" },
+            { src: "images/food-ethnic-house-3.jpg", caption: "Thực đơn: các món lẩu" },
+          ],
+        },
+        {
+          dishes: ["Pizza", "Mì Ý"],
+          name: "Gác Bếp",
+          maps: "https://maps.app.goo.gl/xdmmKp4dM6DcYKsF6",
+          note: "Món kiểu Tây",
+          images: [
+            { src: "images/food-gac-bep-1.jpg", caption: "Thực đơn: pizza" },
+            { src: "images/food-gac-bep-2.jpg", caption: "Thực đơn: mì Ý, phở rau củ" },
+          ],
+        },
+        {
+          dishes: ["Cá", "Lẩu", "Gà"],
+          name: "Nhà hàng Hải Hiền",
+          maps: "https://maps.app.goo.gl/6uoi8ZYx2v56NQMH6",
+          note: "Món truyền thống Hà Giang",
+          images: [{ src: "images/food-hai-hien-1.jpg", caption: "Thực đơn" }],
+        },
+      ],
+    },
+    {
+      day: "d2",
+      meal: "Ăn trưa · Ngày 2",
+      area: "Mèo Vạc",
+      spots: [
+        {
+          dishes: ["Cơm rang"],
+          name: "Sơn cơm rang",
+          address: "Tổ 2, TT Mèo Vạc",
+          note: "Theo blog, chưa kiểm chứng. Có cơ sở 2 ở tổ 4",
+        },
+        {
+          dishes: ["Cơm", "Phở", "Lẩu"],
+          name: "Hạnh Lèng Quán",
+          address: "Chợ Mèo Vạc, TT Mèo Vạc",
+          hours: "5h–22h",
+          note: "Theo blog, chưa kiểm chứng",
+        },
+      ],
+    },
+    {
+      day: "d2",
+      meal: "Ăn tối · Ngày 2",
+      area: "Du Già",
+      spots: [
+        {
+          dishes: ["Mâm cơm tại homestay"],
+          name: "Du Gia Yen Homestay",
+          address: "Làng Du Già",
+          maps: "https://maps.app.goo.gl/Jr5eiE7dTRF1AxnXA",
+          note: "Nhiều homestay Du Già nấu bữa tối theo đặt trước (~120k/người theo blog) – hỏi trước khi đến",
+          images: [{ src: "images/hs2.jpg" }],
+        },
+        {
+          dishes: ["Ăn tối", "Đồ uống"],
+          name: "1 High Bar Du Già",
+          address: "Đường chính làng Du Già",
+          note: "Tripadvisor 4,8/5 (16 đánh giá). Chưa rõ thực đơn",
+        },
+      ],
+    },
+    {
+      day: "d3",
+      meal: "Ăn trưa · Ngày 3",
+      area: "Quản Bạ (Tam Sơn)",
+      spots: [
+        {
+          dishes: ["Cá khe", "Rau rừng", "Cơm"],
+          name: "Nhà hàng Hương Độ",
+          address: "TT Tam Sơn, Quản Bạ",
+          note: "Theo blog, chưa kiểm chứng",
+        },
+        {
+          dishes: ["Cơm"],
+          name: "Nhà hàng Huy Định",
+          address: "Tổ 3, TT Tam Sơn, Quản Bạ",
+          note: "Theo blog, chưa kiểm chứng. Gần sân bóng huyện",
         },
       ],
     },

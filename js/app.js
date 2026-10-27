@@ -570,6 +570,58 @@ $("#schList").onclick = (e) => {
   }, 350);
 };
 
+/* ---------------- ĂN UỐNG ---------------- */
+const foodMaps = (s) =>
+  s.maps ||
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([s.name, s.address].filter(Boolean).join(", "))}`;
+function renderFood() {
+  const groups = CONFIG.food || [];
+  $("#foodChips").innerHTML = groups
+    .map((g, i) => {
+      const d = dayById(g.day);
+      return `<a class="chip" href="#food-${i}" style="text-decoration:none"><span class="sw" style="background:${d ? d.color : "var(--accent)"}"></span>${esc(g.area)}</a>`;
+    })
+    .join("");
+  $("#foodList").innerHTML = groups
+    .map((g, i) => {
+      const d = dayById(g.day),
+        spots = g.spots || [];
+      return `<section class="day-sec" id="food-${i}">
+<div class="day-hd" style="background:${d ? d.color : "var(--accent)"}">
+  <div><div class="n">${esc(g.meal)}</div><h2>${esc(g.area)}</h2></div>
+  <div class="meta">${t("nSpots", { n: spots.length })}</div>
+</div>
+${spots.length ? spots.map(spotCard).join("") : `<div class="spot-empty">${esc(t("noSpots"))}</div>`}
+</section>`;
+    })
+    .join("");
+}
+function spotCard(s) {
+  const imgs = s.images || [];
+  const pics = imgs.length
+    ? // chạm vào ảnh → mở ảnh đầy đủ (vd. ảnh thực đơn bị cắt trong khung)
+      `<div class="spot-pics">${imgs.map((im) => `<a href="${esc(im.src)}" target="_blank" rel="noopener"><img src="${esc(im.src)}" alt="${esc(im.caption || s.name)}" loading="lazy"></a>`).join("")}</div>`
+    : `<div class="spot-pics none">${svg("img")}<span>${esc(t("noFoodPhoto"))}</span></div>`;
+  const stars =
+    s.rating != null
+      ? `<span class="spot-rate">★ ${Number(s.rating).toFixed(1)}${s.reviews != null ? ` <small>(${t("reviews", { n: Number(s.reviews).toLocaleString("vi-VN") })})</small>` : ""}</span>`
+      : s.reviews != null
+        ? `<span class="spot-rate"><small>${t("reviews", { n: Number(s.reviews).toLocaleString("vi-VN") })}</small></span>`
+        : "";
+  const extra = [s.price, s.hours].filter(Boolean).map(esc).join(" · ");
+  return `<article class="spot">
+${pics}
+<div class="spot-body">
+  <div class="spot-dishes">${(s.dishes || []).map((x) => `<span>${esc(x)}</span>`).join("")}</div>
+  <div class="spot-name"><b>${esc(s.name)}</b>${stars}</div>
+  ${s.address ? `<p class="spot-addr">${svg("pin")}${esc(s.address)}</p>` : ""}
+  ${extra ? `<p class="spot-meta">${extra}</p>` : ""}
+  ${s.note ? `<p class="spot-note">${esc(s.note)}</p>` : ""}
+  <a class="btn pri" href="${foodMaps(s)}" target="_blank" rel="noopener">${svg("nav")}${t("openMaps")}</a>
+</div>
+</article>`;
+}
+
 /* ---------------- TABS ---------------- */
 function switchView(id) {
   document
@@ -597,8 +649,9 @@ CONFIG.days.forEach(buildDay);
 applyDayStyle();
 renderTray();
 renderSchedule();
+renderFood();
 setTimeout(fitView, 60);
 try {
   const v = localStorage.getItem("hg-view");
-  if (v === "scheduleView") switchView(v);
+  if (v === "scheduleView" || v === "foodView") switchView(v);
 } catch (e) {}

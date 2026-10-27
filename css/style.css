@@ -598,8 +598,9 @@ nav.tabs button[aria-selected="true"] {
   display: block;
 }
 
-/* Schedule view */
-#scheduleView {
+/* Schedule view (tab Ăn uống dùng chung layout) */
+#scheduleView,
+#foodView {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -765,6 +766,117 @@ nav.tabs button[aria-selected="true"] {
 .nowtag {
   background: var(--accent);
   color: #fff;
+}
+
+/* Food view */
+.spot {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.spot-pics {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.spot-pics::-webkit-scrollbar {
+  display: none;
+}
+.spot-pics > a {
+  flex: none;
+  width: 100%;
+  scroll-snap-align: start;
+}
+.spot-pics > a:not(:only-child) {
+  width: 85%;
+}
+.spot-pics img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #e8ece7;
+}
+.spot-pics.none {
+  height: 72px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #eef1ec;
+  color: var(--muted);
+  font-size: 12px;
+}
+.spot-pics.none svg {
+  width: 18px;
+  height: 18px;
+}
+.spot-body {
+  padding: 12px 14px 14px;
+}
+.spot-dishes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 6px;
+}
+.spot-dishes span {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--accent);
+}
+.spot-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 15px;
+}
+.spot-rate {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e67700;
+}
+.spot-rate small {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.spot-addr,
+.spot-meta,
+.spot-note {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.spot-addr {
+  display: flex;
+  gap: 6px;
+}
+.spot-addr svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin-top: 2px;
+}
+.spot-meta {
+  color: var(--muted);
+}
+.spot-body .btn {
+  margin-top: 12px;
+}
+.spot-empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
 }
 
 @media (min-width: 900px) {
