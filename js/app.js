@@ -599,8 +599,9 @@ ${spots.length ? spots.map(spotCard).join("") : `<div class="spot-empty">${esc(t
 function spotCard(s) {
   const imgs = s.images || [];
   const pics = imgs.length
-    ? // chạm vào ảnh → mở ảnh đầy đủ (vd. ảnh thực đơn bị cắt trong khung)
-      `<div class="spot-pics">${imgs.map((im) => `<a href="${esc(im.src)}" target="_blank" rel="noopener"><img src="${esc(im.src)}" alt="${esc(im.caption || s.name)}" loading="lazy"></a>`).join("")}</div>`
+    ? // chạm vào ảnh → mở ảnh đầy đủ (vd. ảnh thực đơn bị cắt trong khung);
+      // nút ‹ › cho máy tính (chỉ hiện khi rê chuột, xem CSS)
+      `<div class="pics-wrap"><div class="spot-pics">${imgs.map((im) => `<a href="${esc(im.src)}" target="_blank" rel="noopener"><img src="${esc(im.src)}" alt="${esc(im.caption || s.name)}" loading="lazy"></a>`).join("")}</div>${imgs.length > 1 ? `<button class="pics-nav prev" data-dir="-1" aria-label="Ảnh trước">‹</button><button class="pics-nav next" data-dir="1" aria-label="Ảnh sau">›</button>` : ""}</div>`
     : `<div class="spot-pics none">${svg("img")}<span>${esc(t("noFoodPhoto"))}</span></div>`;
   const stars =
     s.rating != null
@@ -621,6 +622,37 @@ ${pics}
 </div>
 </article>`;
 }
+
+// nút ‹ › của dải ảnh: cuộn 1 ảnh mỗi lần
+$("#foodList").addEventListener("click", (e) => {
+  const b = e.target.closest(".pics-nav");
+  if (!b) return;
+  const pics = b.parentElement.querySelector(".spot-pics");
+  const step = pics.firstElementChild.getBoundingClientRect().width + 4;
+  pics.scrollBy({ left: step * Number(b.dataset.dir), behavior: "smooth" });
+});
+// ẩn ‹ ở ảnh đầu, › ở ảnh cuối
+function updatePicsNav(pics) {
+  const w = pics.parentElement;
+  w.classList.toggle("at-start", pics.scrollLeft <= 2);
+  w.classList.toggle(
+    "at-end",
+    pics.scrollLeft + pics.clientWidth >= pics.scrollWidth - 2,
+  );
+}
+$("#foodList").addEventListener(
+  "scroll",
+  (e) => {
+    if (e.target.parentElement?.classList.contains("pics-wrap"))
+      updatePicsNav(e.target);
+  },
+  true,
+);
+// tab đang ẩn thì không đo được kích thước → tính lại khi rê chuột vào ảnh
+$("#foodList").addEventListener("mouseover", (e) => {
+  const w = e.target.closest(".pics-wrap");
+  if (w) updatePicsNav(w.querySelector(".spot-pics"));
+});
 
 /* ---------------- TABS ---------------- */
 function switchView(id) {
