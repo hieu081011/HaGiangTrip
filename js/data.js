@@ -21,10 +21,6 @@
  *   schedule : [{ time: '07:00', end: '07:45', title, type, place: 'id', note }]
  *     type   : 'eat' | 'sight' | 'stay' | 'move' | 'other'
  *
- * en : bản tiếng Anh, đặt cạnh bản tiếng Việt ở trip / place / day / schedule
- *      vd. en: { name, desc, info, tips }  hoặc  en: { title, note }
- *      Trường nào thiếu trong `en` sẽ tự hiện bản tiếng Việt.
- *
  * ⚠ Toạ độ hiện tại là ước lượng — nên kiểm tra lại trên Google Maps.
  * ===================================================================== */
 const CONFIG = {
@@ -32,10 +28,6 @@ const CONFIG = {
     title: "Hà Giang Loop - DeepC",
     subtitle: "3 ngày · 2 đêm · Cung Đông Bắc",
     startDate: null, // ví dụ '2026-11-20'
-    en: {
-      title: "Hà Giang Loop",
-      subtitle: "3 days · 2 nights · Northeast loop",
-    },
   },
 
   places: {
@@ -54,17 +46,6 @@ const CONFIG = {
           src: "images/hagiang.jpg",
         },
       ],
-      en: {
-        name: "Hà Giang City",
-        desc: "Start and finish point. Rent motorbikes, fill up the tank and buy rain ponchos before heading up to the plateau.",
-        info: [
-          [
-            "To do",
-            "Pick up bikes, check brakes/tyres, photo at the Km0 marker",
-          ],
-          ["Note", "Bring your ID card and driving licence"],
-        ],
-      },
     },
     quanba: {
       name: "Cổng Trời & Núi Đôi Quản Bạ",
@@ -82,15 +63,6 @@ const CONFIG = {
           src: "images/quanba.jpg",
         },
       ],
-      en: {
-        name: "Quản Bạ Heaven Gate & Twin Mountains",
-        desc: "First stop on the plateau, overlooking Tam Sơn valley and the Twin Mountains.",
-        info: [
-          ["Duration", "~45 min"],
-          ["Fee", "Free"],
-        ],
-        tips: "Rest stop with toilets and drinks.",
-      },
     },
     yenminh: {
       name: "Thị trấn Yên Minh",
@@ -105,11 +77,6 @@ const CONFIG = {
         },
       ],
 
-      en: {
-        name: "Yên Minh Town",
-        desc: "Transit town halfway along the route, lunch stop on day 1.",
-        info: [["To do", "Eat, refuel"]],
-      },
     },
     thamma: {
       name: "Dốc Thẩm Mã",
@@ -124,12 +91,6 @@ const CONFIG = {
           src: "images/thamma.jpg",
         },
       ],
-      en: {
-        name: "Thẩm Mã Slope",
-        desc: "Famous zigzag slope – the best shot is from the top looking down.",
-        info: [["Duration", "~30 min"]],
-        tips: "Stay close to the roadside and watch out for trucks coming downhill.",
-      },
     },
 
     nhavuong: {
@@ -147,14 +108,6 @@ const CONFIG = {
           src: "images/nhavuong.jpg",
         },
       ],
-      en: {
-        name: "Vương Family Mansion",
-        desc: 'Mansion of the "Hmông King" Vương Chính Đức in Sà Phìn, blending Hmông, Chinese and French architecture.',
-        info: [
-          ["Duration", "~45 min"],
-          ["Ticket", "[PRICE]"],
-        ],
-      },
     },
     lungcu: {
       name: "Cột cờ Lũng Cú",
@@ -172,33 +125,19 @@ const CONFIG = {
           src: "images/lungcu.jpg",
         },
       ],
-      en: {
-        name: "Lũng Cú Flag Tower",
-        desc: "Vietnam's northernmost point. About 300 steps up to the base of the flag tower.",
-        info: [
-          ["Duration", "~1 hour"],
-          ["Ticket", "[PRICE]"],
-        ],
-        tips: "Very windy – bring a jacket. Go early for sunrise; check the tower's opening hours beforehand.",
-      },
     },
     dongvan: {
       name: "Phố cổ Đồng Văn",
       type: "city",
       lat: 23.2786,
       lng: 105.3618,
-      desc: "Nghỉ đêm 1. Dạo phố cổ buổi tối, ăn lẩu và uống cà phê bên những ngôi nhà trình tường.",
-      info: [["Việc cần làm", "Nhận phòng, ăn tối, dạo phố"]],
+      desc: "Tối ngày 1 ra dạo phố cổ, ăn lẩu và uống cà phê bên những ngôi nhà trình tường.",
+      info: [["Việc cần làm", "Dạo phố, ăn tối"]],
       images: [
         {
           src: "images/dongvan.jpg",
         },
       ],
-      en: {
-        name: "Đồng Văn Old Quarter",
-        desc: "Night 1. Stroll the old quarter in the evening, with hotpot and coffee among rammed-earth houses.",
-        info: [["To do", "Check in, dinner, walk around"]],
-      },
     },
     mapileng: {
       name: "Đèo Mã Pì Lèng",
@@ -213,12 +152,6 @@ const CONFIG = {
           src: "images/mapileng.jpg",
         },
       ],
-      en: {
-        name: "Mã Pì Lèng Pass",
-        desc: 'One of the "four great passes", overlooking Tu Sản canyon and the jade-green Nho Quế river.',
-        info: [["Duration", "~45 min"]],
-        tips: "Stop at the Mã Pì Lèng Panorama area for photos.",
-      },
     },
     nhoque: {
       name: "Sông Nho Quế – Hẻm Tu Sản",
@@ -236,15 +169,6 @@ const CONFIG = {
           src: "images/nhoque.jpg",
         },
       ],
-      en: {
-        name: "Nho Quế River – Tu Sản Canyon",
-        desc: "Boat trip through Tu Sản, one of the deepest canyons in Southeast Asia.",
-        info: [
-          ["Duration", "~2–3 hours (incl. walking down to the pier)"],
-          ["Boat ticket", "[PRICE]"],
-        ],
-        tips: "Steep path down to the pier – wear shoes with good grip.",
-      },
     },
     meovac: {
       name: "Thị trấn Mèo Vạc",
@@ -258,20 +182,12 @@ const CONFIG = {
           src: "images/meovac.jpg",
         },
       ],
-      en: {
-        name: "Mèo Vạc Town",
-        desc: "Lunch stop on day 2; refuel before heading to Du Già.",
-        info: [["To do", "Lunch, refuel"]],
-      },
     },
     via_dt176: {
       name: "Đường tỉnh 176",
       type: "via", // điểm nằm giữa ĐT.176, chỉ để nắn tuyến
       lat: 23.0716,
       lng: 105.25,
-      en: {
-        name: "Provincial Road 176",
-      },
     },
     dugia: {
       name: "Làng Du Già",
@@ -286,12 +202,6 @@ const CONFIG = {
           src: "images/dugia.jpg",
         },
       ],
-      en: {
-        name: "Du Già Village",
-        desc: "Peaceful Tày valley among limestone mountains, night 2. Plenty of homestays, rice terraces and cool streams.",
-        info: [["To do", "Check in, village walk, dinner"]],
-        tips: "Few petrol stations – fill up in Mèo Vạc first.",
-      },
     },
     thacdugia: {
       name: "Thác Du Già",
@@ -302,30 +212,18 @@ const CONFIG = {
       info: [["Thời gian", "~1 giờ"]],
       tips: "Đá trơn, đi dép bám tốt.",
       images: [],
-      en: {
-        name: "Du Già Waterfall",
-        desc: "Multi-tiered waterfall about 3 km from Du Già village, with a pool for swimming on sunny days.",
-        info: [["Duration", "~1 hour"]],
-        tips: "Slippery rocks – wear sandals with good grip.",
-      },
     },
     via_tl181a: {
       name: "TL181 – Sáng Pá",
       type: "via", // nắn tuyến Du Già → Lùng Tám theo TL181 (qua Đường Thượng)
       lat: 22.9741,
       lng: 105.1608,
-      en: {
-        name: "Road TL181 – Sáng Pá",
-      },
     },
     via_tl181b: {
       name: "TL181 – Lồ Lố Thàng",
       type: "via",
       lat: 22.9941,
       lng: 105.0881,
-      en: {
-        name: "Road TL181 – Lồ Lố Thàng",
-      },
     },
     lungtam: {
       name: "Làng dệt lanh Lùng Tám",
@@ -336,12 +234,6 @@ const CONFIG = {
       info: [["Thời gian", "~30 phút"]],
       tips: "Toạ độ là trung tâm xã Lùng Tám – hỏi đường tới HTX dệt lanh.",
       images: [],
-      en: {
-        name: "Lùng Tám Linen Weaving Village",
-        desc: "Traditional Hmông linen weaving village: see spinning, indigo dyeing and beeswax batik.",
-        info: [["Duration", "~30 min"]],
-        tips: "Coordinates are the Lùng Tám commune centre – ask the way to the linen cooperative.",
-      },
     },
     rungthong: {
       name: "Rừng thông Yên Minh",
@@ -351,11 +243,6 @@ const CONFIG = {
       desc: "Rừng thông xanh mát trên đường về, điểm dừng chụp ảnh nhẹ nhàng.",
       info: [["Thời gian", "~30 phút"]],
       images: [],
-      en: {
-        name: "Yên Minh Pine Forest",
-        desc: "Cool pine forest along the way, an easy photo stop.",
-        info: [["Duration", "~30 min"]],
-      },
     },
     bacsum: {
       name: "Đèo Bắc Sum",
@@ -366,54 +253,34 @@ const CONFIG = {
       info: [["Thời gian", "~20 phút"]],
       tips: "Đổ đèo về số thấp, không bóp phanh liên tục.",
       images: [],
-      en: {
-        name: "Bắc Sum Pass",
-        desc: "Long pass with hairpin bends and great views on the descent to Hà Giang.",
-        info: [["Duration", "~20 min"]],
-        tips: "Use a low gear downhill instead of braking constantly.",
-      },
     },
 
-    /* Ví dụ homestay / quán ăn — thay bằng nơi thật khi đặt xong */
+    /* Homestay đã đặt */
     hs1: {
-      name: "[Homestay đêm 1 – Đồng Văn]",
+      name: "Vieille Maison de Ma Lé",
       type: "stay",
-      lat: 23.2795,
-      lng: 105.36,
-      desc: "Thay bằng tên, toạ độ và SĐT homestay đã đặt.",
+      lat: 23.3077752,
+      lng: 105.3029446,
+      desc: "Homestay đêm 1 ở xã Ma Lé, nằm trên đường Đồng Văn – Lũng Cú: cách phố cổ Đồng Văn ~12 km, cách cột cờ Lũng Cú ~15 km.",
       info: [
-        ["SĐT", "[SĐT]"],
-        ["Giá", "[GIÁ]"],
+        ["Đêm", "Đêm 1 (ngày 1 → ngày 2)"],
+        ["SĐT", "0822894526"],
+        ["Giá", "1600000 VND"],
       ],
-      images: [],
-      en: {
-        name: "[Homestay night 1 – Đồng Văn]",
-        desc: "Replace with the booked homestay's name, coordinates and phone number.",
-        info: [
-          ["Phone", "[PHONE]"],
-          ["Price", "[PRICE]"],
-        ],
-      },
+      images: [{ src: "images/hs1.jpg" }],
     },
     hs2: {
-      name: "[Homestay đêm 2 – Du Già]",
+      name: "Du Gia Yen Homestay",
       type: "stay",
-      lat: 22.9315,
-      lng: 105.2255,
-      desc: "Thay bằng tên, toạ độ và SĐT homestay đã đặt.",
+      lat: 22.929057,
+      lng: 105.2217831,
+      desc: "Homestay đêm 2 ở làng Du Già, cạnh hồ nước giữa thung lũng.",
       info: [
-        ["SĐT", "[SĐT]"],
-        ["Giá", "[GIÁ]"],
+        ["Đêm", "Đêm 2 (ngày 2 → ngày 3)"],
+        ["SĐT", "0985919345"],
+        ["Giá", "1000000 VNĐ"],
       ],
-      images: [],
-      en: {
-        name: "[Homestay night 2 – Du Già]",
-        desc: "Replace with the booked homestay's name, coordinates and phone number.",
-        info: [
-          ["Phone", "[PHONE]"],
-          ["Price", "[PRICE]"],
-        ],
-      },
+      images: [{ src: "images/hs2.jpg" }],
     },
   },
 
@@ -421,14 +288,19 @@ const CONFIG = {
     {
       id: "d1",
       label: "Ngày 1",
-      title: "Hà Giang → Đồng Văn",
+      title: "Hà Giang → Ma Lé · tối dạo Đồng Văn",
       color: "#D9480F",
-      en: {
-        label: "Day 1",
-        title: "Hà Giang → Đồng Văn",
-      },
-      route: ["hagiang", "quanba", "yenminh", "thamma", "nhavuong", "dongvan"],
-      extras: ["hs1"],
+      route: [
+        "hagiang",
+        "quanba",
+        "yenminh",
+        "thamma",
+        "nhavuong",
+        "hs1", // nhận phòng, gửi đồ
+        "dongvan", // tối ra phố cổ
+        "hs1", // về homestay ngủ
+      ],
+      extras: [],
       schedule: [
         {
           time: "06:30",
@@ -437,19 +309,12 @@ const CONFIG = {
           type: "eat",
           place: "hagiang",
           note: "Kiểm tra xe, đổ đầy xăng",
-          en: {
-            title: "Breakfast, pick up the motorbikes",
-            note: "Check the bike, fill up the tank",
-          },
         },
         {
           time: "07:30",
           title: "Xuất phát lên Quản Bạ",
           type: "move",
           note: "~45 km",
-          en: {
-            title: "Ride up to Quản Bạ",
-          },
         },
         {
           time: "09:00",
@@ -457,9 +322,6 @@ const CONFIG = {
           title: "Cổng Trời & Núi Đôi Quản Bạ",
           type: "sight",
           place: "quanba",
-          en: {
-            title: "Quản Bạ Heaven Gate & Twin Mountains",
-          },
         },
         {
           time: "11:30",
@@ -467,9 +329,6 @@ const CONFIG = {
           title: "Ăn trưa tại Yên Minh",
           type: "eat",
           place: "yenminh",
-          en: {
-            title: "Lunch in Yên Minh",
-          },
         },
         {
           time: "14:00",
@@ -477,9 +336,6 @@ const CONFIG = {
           title: "Dốc Thẩm Mã",
           type: "sight",
           place: "thamma",
-          en: {
-            title: "Thẩm Mã Slope",
-          },
         },
         {
           time: "15:15",
@@ -487,43 +343,42 @@ const CONFIG = {
           title: "Dinh thự họ Vương",
           type: "sight",
           place: "nhavuong",
-          en: {
-            title: "Vương Family Mansion",
-          },
         },
         {
           time: "16:30",
-          title: "Nhận phòng homestay Đồng Văn",
+          end: "17:45",
+          title: "Nhận phòng Vieille Maison de Ma Lé, gửi đồ, nghỉ ngơi",
           type: "stay",
           place: "hs1",
-          note: "~14 km từ Dinh thự họ Vương. Hỏi homestay giờ mở cửa cột cờ Lũng Cú sáng mai",
-          en: {
-            title: "Check in at the Đồng Văn homestay",
-            note: "~14 km from the Vương Mansion. Ask the homestay about the Lũng Cú tower opening hours tomorrow morning",
-          },
+          note: "~21 km từ Dinh thự họ Vương, ~30 phút. Hỏi homestay giờ mở cửa cột cờ Lũng Cú sáng mai",
         },
         {
-          time: "17:00",
-          end: "18:30",
+          time: "17:45",
+          title: "Ra phố cổ Đồng Văn",
+          type: "move",
+          note: "~12 km, ~20 phút",
+        },
+        {
+          time: "18:00",
+          end: "19:00",
           title: "Dạo phố cổ Đồng Văn",
           type: "sight",
           place: "dongvan",
-          note: "Ngắm hoàng hôn, cà phê phố cổ",
-          en: {
-            title: "Stroll around Đồng Văn Old Quarter",
-            note: "Sunset, coffee in the old quarter",
-          },
+          note: "Phố cổ lên đèn, cà phê phố cổ",
         },
         {
           time: "19:00",
-          title: "Ăn tối, nghỉ sớm",
+          end: "20:00",
+          title: "Ăn tối tại Đồng Văn",
           type: "eat",
           place: "dongvan",
-          note: "Sáng mai xuất phát sớm lên Lũng Cú",
-          en: {
-            title: "Dinner, early night",
-            note: "Early start to Lũng Cú tomorrow",
-          },
+        },
+        {
+          time: "20:15",
+          title: "Về homestay Ma Lé, nghỉ sớm",
+          type: "stay",
+          place: "hs1",
+          note: "~12 km đường đèo buổi tối: đi chậm, đi theo đoàn. Sáng mai xuất phát sớm lên Lũng Cú",
         },
       ],
     },
@@ -532,14 +387,10 @@ const CONFIG = {
       label: "Ngày 2",
       title: "Lũng Cú → Nho Quế → Mèo Vạc → Du Già",
       color: "#1864AB",
-      en: {
-        label: "Day 2",
-        title: "Lũng Cú → Nho Quế → Mèo Vạc → Du Già",
-      },
       route: [
-        "dongvan",
+        "hs1",
         "lungcu",
-        "hs1", // quay về homestay Đồng Văn trả phòng
+        "hs1", // quay về homestay Ma Lé trả phòng
         "mapileng",
         "nhoque",
         "meovac",
@@ -549,15 +400,11 @@ const CONFIG = {
       extras: ["hs2"],
       schedule: [
         {
-          time: "05:45",
+          time: "06:00",
           title: "Xuất phát lên Lũng Cú",
           type: "move",
-          place: "dongvan",
-          note: "Để đồ ở homestay. ~27 km, ~40 phút",
-          en: {
-            title: "Ride up to Lũng Cú",
-            note: "Leave luggage at the homestay. ~27 km, ~40 min",
-          },
+          place: "hs1",
+          note: "Để đồ ở homestay. ~15 km, ~25 phút",
         },
         {
           time: "06:30",
@@ -566,10 +413,6 @@ const CONFIG = {
           type: "sight",
           place: "lungcu",
           note: "Ngắm bình minh, vắng khách",
-          en: {
-            title: "Lũng Cú Flag Tower",
-            note: "Sunrise, few visitors",
-          },
         },
         {
           time: "07:30",
@@ -577,31 +420,20 @@ const CONFIG = {
           title: "Ăn sáng gần Lũng Cú",
           type: "eat",
           place: "lungcu",
-          en: {
-            title: "Breakfast near Lũng Cú",
-          },
         },
         {
           time: "08:00",
-          title: "Quay về Đồng Văn",
+          title: "Quay về homestay Ma Lé",
           type: "move",
-          note: "~25 km, ~40 phút",
-          en: {
-            title: "Back to Đồng Văn",
-            note: "~25 km, ~40 min",
-          },
+          note: "~14 km, ~20 phút",
         },
         {
-          time: "08:45",
-          end: "09:15",
-          title: "Trả phòng homestay Đồng Văn",
+          time: "08:30",
+          end: "09:00",
+          title: "Trả phòng Vieille Maison de Ma Lé",
           type: "stay",
           place: "hs1",
           note: "Lấy đồ, chằng buộc lên xe",
-          en: {
-            title: "Check out of the Đồng Văn homestay",
-            note: "Collect the bags and strap them onto the bikes",
-          },
         },
         {
           time: "09:30",
@@ -609,11 +441,7 @@ const CONFIG = {
           title: "Đèo Mã Pì Lèng",
           type: "sight",
           place: "mapileng",
-          note: "~13 km từ Đồng Văn",
-          en: {
-            title: "Mã Pì Lèng Pass",
-            note: "~13 km from Đồng Văn",
-          },
+          note: "~25 km từ Ma Lé, qua Đồng Văn",
         },
         {
           time: "10:15",
@@ -622,10 +450,6 @@ const CONFIG = {
           type: "sight",
           place: "nhoque",
           note: "Rút gọn còn ~1h45 để kịp về Du Già trước tối",
-          en: {
-            title: "Boat trip on the Nho Quế – Tu Sản Canyon",
-            note: "Shortened to ~1h45 to reach Du Già before dark",
-          },
         },
         {
           time: "12:15",
@@ -633,9 +457,6 @@ const CONFIG = {
           title: "Ăn trưa tại Mèo Vạc",
           type: "eat",
           place: "meovac",
-          en: {
-            title: "Lunch in Mèo Vạc",
-          },
         },
         {
           time: "13:00",
@@ -644,38 +465,24 @@ const CONFIG = {
           type: "other",
           place: "meovac",
           note: "Đoạn Mậu Duệ → Du Già ít cây xăng",
-          en: {
-            title: "Fill up the tank",
-            note: "Few petrol stations between Mậu Duệ and Du Già",
-          },
         },
         {
           time: "13:15",
           title: "Di chuyển về Du Già",
           type: "move",
           note: "~76 km: ĐT.176 tới Mậu Duệ rồi đường núi xuống Du Già, ~3h30. Cố đến trước khi trời tối",
-          en: {
-            title: "Ride to Du Già",
-            note: "~76 km: road ĐT.176 to Mậu Duệ, then a mountain road down to Du Già, ~3h30. Try to arrive before dark",
-          },
         },
         {
           time: "17:00",
           title: "Nhận phòng homestay Du Già",
           type: "stay",
           place: "hs2",
-          en: {
-            title: "Check in at the Du Già homestay",
-          },
         },
         {
           time: "19:00",
           title: "Ăn tối, giao lưu",
           type: "eat",
           place: "dugia",
-          en: {
-            title: "Dinner, hang out",
-          },
         },
       ],
     },
@@ -684,10 +491,6 @@ const CONFIG = {
       label: "Ngày 3",
       title: "Du Già → Hà Giang",
       color: "#2B8A3E",
-      en: {
-        label: "Day 3",
-        title: "Du Già → Hà Giang",
-      },
       route: [
         "dugia",
         "thacdugia",
@@ -706,9 +509,6 @@ const CONFIG = {
           title: "Ăn sáng, trả phòng",
           type: "eat",
           place: "dugia",
-          en: {
-            title: "Breakfast, check out",
-          },
         },
         {
           time: "08:45",
@@ -717,20 +517,12 @@ const CONFIG = {
           type: "sight",
           place: "thacdugia",
           note: "Tắm thác nếu trời nắng",
-          en: {
-            title: "Du Già Waterfall",
-            note: "Swim if it's sunny",
-          },
         },
         {
           time: "09:45",
           title: "Đi TL181 qua Đường Thượng về Lùng Tám",
           type: "move",
           note: "~41 km đường núi, ~3 giờ, đi chậm",
-          en: {
-            title: "Ride road TL181 via Đường Thượng to Lùng Tám",
-            note: "~41 km of mountain road, ~3 hours, ride slowly",
-          },
         },
         {
           time: "12:45",
@@ -739,10 +531,6 @@ const CONFIG = {
           type: "sight",
           place: "lungtam",
           note: "Bỏ qua nếu đến muộn",
-          en: {
-            title: "Lùng Tám Linen Weaving Village",
-            note: "Skip if running late",
-          },
         },
         {
           time: "13:30",
@@ -751,20 +539,12 @@ const CONFIG = {
           type: "eat",
           place: "quanba",
           note: "Thị trấn Tam Sơn, dưới chân Cổng Trời",
-          en: {
-            title: "Lunch in Quản Bạ",
-            note: "Tam Sơn town, below Heaven Gate",
-          },
         },
         {
           time: "14:30",
           title: "Xuất phát về TP. Hà Giang",
           type: "move",
           note: "~56 km qua đèo Bắc Sum, ~1h30",
-          en: {
-            title: "Head back to Hà Giang City",
-            note: "~56 km via Bắc Sum Pass, ~1h30",
-          },
         },
         {
           time: "15:00",
@@ -773,19 +553,12 @@ const CONFIG = {
           type: "sight",
           place: "bacsum",
           note: "Dừng nhanh chụp ảnh. Đổ đèo về số thấp",
-          en: {
-            title: "Bắc Sum Pass",
-            note: "Quick photo stop. Use a low gear on the descent",
-          },
         },
         {
           time: "16:00",
           title: "Về TP. Hà Giang, trả xe",
           type: "other",
           place: "hagiang",
-          en: {
-            title: "Back to Hà Giang City, return the bikes",
-          },
         },
         {
           time: "18:00",
@@ -793,9 +566,6 @@ const CONFIG = {
           title: "Ăn tối, kết thúc hành trình",
           type: "eat",
           place: "hagiang",
-          en: {
-            title: "Dinner, end of the trip",
-          },
         },
       ],
     },

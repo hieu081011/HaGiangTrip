@@ -1,5 +1,5 @@
 /* Logic hiển thị bản đồ + lịch trình. Dữ liệu chuyến đi nằm ở js/data.js,
- * chuỗi giao diện song ngữ nằm ở js/i18n.js */
+ * chữ hiển thị trên giao diện nằm ở js/strings.js */
 
 const ICONS = {
   city: '<path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/>',
@@ -15,7 +15,7 @@ const ICONS = {
   nav: '<path d="m3 11 18-8-8 18-2-8z"/>',
   img: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/>',
 };
-// màu theo loại; tên loại hiển thị lấy từ js/i18n.js (types)
+// màu theo loại; tên loại hiển thị lấy từ js/strings.js (types)
 const TYPE = {
   city: { color: "#495057", bg: "#F1F3F5" },
   sight: { color: "#7048E8", bg: "#F3F0FF" },
@@ -53,7 +53,7 @@ const dayDate = (i) => {
 };
 const fmtDate = (d) =>
   d
-    ? d.toLocaleDateString(LANG === "vi" ? "vi-VN" : "en-GB", {
+    ? d.toLocaleDateString("vi-VN", {
         weekday: "short",
         day: "2-digit",
         month: "2-digit",
@@ -61,8 +61,11 @@ const fmtDate = (d) =>
     : "";
 const gmapsPoint = (p) =>
   `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
-// các điểm dừng thật của 1 ngày (bỏ điểm 'via' chỉ dùng để nắn tuyến)
-const stopsOf = (d) => d.route.filter((id) => P[id].type !== "via");
+// các điểm dừng thật của 1 ngày (bỏ điểm 'via' chỉ dùng để nắn tuyến);
+// điểm ghé lại nhiều lần (vd. về homestay) chỉ tính 1 lần, theo lần ghé đầu
+const stopsOf = (d) => [
+  ...new Set(d.route.filter((id) => P[id].type !== "via")),
+];
 const gmapsDay = (d) =>
   "https://www.google.com/maps/dir/" +
   d.route.map((id) => `${P[id].lat},${P[id].lng}`).join("/");
@@ -71,11 +74,8 @@ const imgSearch = (p) =>
 
 /* Header */
 function renderHeader() {
-  $("#tripTitle").textContent = tr(CONFIG.trip, "title");
-  $("#tripSub").textContent = tr(CONFIG.trip, "subtitle");
-  // nút hiện ngôn ngữ sẽ chuyển sang
-  $("#btnLang span").textContent = LANG === "vi" ? "EN" : "VI";
-  $("#btnLang").setAttribute("aria-label", t("switchLang"));
+  $("#tripTitle").textContent = CONFIG.trip.title;
+  $("#tripSub").textContent = CONFIG.trip.subtitle;
 }
 
 /* ---------------- MAP ---------------- */
@@ -200,7 +200,7 @@ function buildDay(day, idx) {
       riseOnHover: true,
     })
       .addTo(map)
-      .bindTooltip(tr(P[id], "name"), {
+      .bindTooltip(P[id].name, {
         className: "lbl",
         direction: "top",
         offset: [0, -14],
@@ -213,7 +213,7 @@ function buildDay(day, idx) {
   (day.extras || []).forEach((id) => {
     const m = L.marker([P[id].lat, P[id].lng], { icon: extraIcon(P[id]) })
       .addTo(map)
-      .bindTooltip(tr(P[id], "name"), {
+      .bindTooltip(P[id].name, {
         className: "lbl",
         direction: "top",
         offset: [0, -14],
@@ -238,7 +238,7 @@ function buildDay(day, idx) {
       renderTray();
       renderSchedule();
     })
-    .catch(() => toast(t("routeFail", { day: tr(day, "label") })));
+    .catch(() => toast(t("routeFail", { day: day.label })));
 }
 
 function applyDayStyle() {
@@ -303,7 +303,7 @@ function selectDay(id) {
 function renderChips() {
   const chips = [
     { id: "all", label: t("allDays"), color: null },
-    ...CONFIG.days.map((d) => ({ ...d, label: tr(d, "label") })),
+    ...CONFIG.days.map((d) => ({ ...d, label: d.label })),
   ];
   $("#dayChips").innerHTML = chips
     .map(
@@ -337,14 +337,14 @@ function renderTray() {
       .map(
         (d, i) => `<button class="stop daycard" data-day="${d.id}">
 <span class="num" style="background:${d.color}">${i + 1}</span>
-<span><b>${esc(tr(d, "title"))}</b><small>${stat(dayLayers[d.id]?.stats)}</small></span></button>`,
+<span><b>${esc(d.title)}</b><small>${stat(dayLayers[d.id]?.stats)}</small></span></button>`,
       )
       .join("");
   } else {
     const d = dayById(currentDay),
       i = CONFIG.days.indexOf(d);
     head.innerHTML = `<span class="dot" style="background:${d.color}"></span>
-<div><h2>${esc(tr(d, "label"))}${dayDate(i) ? " · " + fmtDate(dayDate(i)) : ""}</h2><p>${stat(dayLayers[d.id]?.stats)}</p></div>
+<div><h2>${esc(d.label)}${dayDate(i) ? " · " + fmtDate(dayDate(i)) : ""}</h2><p>${stat(dayLayers[d.id]?.stats)}</p></div>
 <a class="gm" href="${gmapsDay(d)}" target="_blank" rel="noopener">${svg("nav")}Google Maps</a>`;
     const items = stopsOf(d)
       .map((id, k) => ({ id, k: k + 1 }))
@@ -355,7 +355,7 @@ function renderTray() {
           s = d.schedule.find((x) => x.place === id);
         return `<button class="stop" data-place="${id}" data-day="${d.id}">
   ${k ? `<span class="num" style="background:${d.color}">${k}</span>` : `<span class="ic" style="color:${TYPE[p.type].color}">${svg(p.type)}</span>`}
-  <span><b>${esc(tr(p, "name"))}</b><small>${s ? s.time + " · " : ""}${typeLabel(p.type)}</small></span></button>`;
+  <span><b>${esc(p.name)}</b><small>${s ? s.time + " · " : ""}${typeLabel(p.type)}</small></span></button>`;
       })
       .join("");
   }
@@ -380,16 +380,14 @@ $("#stops").addEventListener(
 );
 
 /* Detail sheet */
-let openedPlace = null; // { id, dayId } — để dịch lại sheet khi đổi ngôn ngữ
-function openPlace(id, dayId, pan = true) {
+function openPlace(id, dayId) {
   const p = P[id],
     d = dayById(dayId),
     ty = TYPE[p.type] || TYPE.other,
-    name = tr(p, "name"),
-    desc = tr(p, "desc"),
-    info = tr(p, "info"),
-    tips = tr(p, "tips");
-  openedPlace = { id, dayId };
+    name = p.name,
+    desc = p.desc,
+    info = p.info,
+    tips = p.tips;
   const acts = [];
   CONFIG.days.forEach((dd) =>
     dd.schedule.forEach((s) => {
@@ -407,11 +405,11 @@ function openPlace(id, dayId, pan = true) {
 ${gallery}
 <div class="badges">
 <span class="badge" style="background:${ty.bg};color:${ty.color}">${typeLabel(p.type)}</span>
-${acts.map((a) => `<span class="badge" style="background:${a.day.color};color:#fff">${esc(tr(a.day, "label"))} · ${a.time}</span>`).join("")}
+${acts.map((a) => `<span class="badge" style="background:${a.day.color};color:#fff">${esc(a.day.label)} · ${a.time}</span>`).join("")}
 </div>
 <h3 id="sheetTitle">${esc(name)}</h3>
 ${desc ? `<p class="desc">${esc(desc)}</p>` : ""}
-${acts.length ? `<ul class="sched-at">${acts.map((a) => `<li><b>${a.time}</b><span>${esc(tr(a, "title"))}${a.note ? " – " + esc(tr(a, "note")) : ""}</span></li>`).join("")}</ul>` : ""}
+${acts.length ? `<ul class="sched-at">${acts.map((a) => `<li><b>${a.time}</b><span>${esc(a.title)}${a.note ? " – " + esc(a.note) : ""}</span></li>`).join("")}</ul>` : ""}
 ${
 info && info.length
   ? `<ul class="info">${info.map(([k, v]) => `<li><span>${esc(k)}</span><span>${esc(v)}</span></li>`).join("")}
@@ -424,13 +422,11 @@ ${tips ? `<div class="tips"><b>${t("tips")}</b>${esc(tips)}</div>` : ""}
 <a class="btn" href="${imgSearch(p)}" target="_blank" rel="noopener">${svg("img")}${t("photos")}</a>
 </div>`;
   $("#sheet").classList.add("open");
-  if (!pan) return;
   $("#sheet .sc").scrollTop = 0;
   map.panTo([p.lat, p.lng], { animate: true });
 }
 function closeSheet() {
   $("#sheet").classList.remove("open");
-  openedPlace = null;
 }
 $("#sheetClose").onclick = closeSheet;
 map.on("click", closeSheet);
@@ -516,7 +512,7 @@ function renderSchedule() {
   $("#schChips").innerHTML = CONFIG.days
     .map(
       (d) =>
-        `<a class="chip" href="#sec-${d.id}" style="text-decoration:none"><span class="sw" style="background:${d.color}"></span>${esc(tr(d, "label"))}</a>`,
+        `<a class="chip" href="#sec-${d.id}" style="text-decoration:none"><span class="sw" style="background:${d.color}"></span>${esc(d.label)}</a>`,
     )
     .join("");
   $("#schList").innerHTML = CONFIG.days
@@ -530,7 +526,7 @@ function renderSchedule() {
         });
       return `<section class="day-sec" id="sec-${d.id}">
 <div class="day-hd" style="background:${d.color}">
-  <div><div class="n">${esc(tr(d, "label"))}${date ? " · " + fmtDate(date) : ""}</div><h2>${esc(tr(d, "title"))}</h2>
+  <div><div class="n">${esc(d.label)}${date ? " · " + fmtDate(date) : ""}</div><h2>${esc(d.title)}</h2>
   <p>${t("nActs", { n: d.schedule.length })}</p></div>
   <div class="meta">${dayLayers[d.id]?.stats ? Math.round(dayLayers[d.id].stats.km) + " km" : ""}</div>
 </div>
@@ -538,7 +534,7 @@ function renderSchedule() {
   .map((s, k) => {
     const ty = TYPE[s.type] || TYPE.other,
       p = s.place && P[s.place],
-      pname = p ? tr(p, "name") : "";
+      pname = p ? p.name : "";
     const cls = isToday
       ? k === nowIdx
         ? " now"
@@ -550,8 +546,8 @@ function renderSchedule() {
     <div class="t">${s.time}${s.end ? `<small>– ${s.end}</small>` : ""}</div>
     <div class="d" style="border-color:${ty.color};color:${ty.color}">${svg(s.type)}</div>
     <div class="c">
-      <h4>${esc(tr(s, "title"))}</h4>
-      ${s.note ? `<p>${esc(tr(s, "note"))}</p>` : ""}
+      <h4>${esc(s.title)}</h4>
+      ${s.note ? `<p>${esc(s.note)}</p>` : ""}
       <div class="row">
         <span class="tag" style="background:${ty.bg};color:${ty.color}">${typeLabel(s.type)}</span>
         ${cls === " now" ? `<span class="tag nowtag">${t("now")}</span>` : ""}
@@ -594,29 +590,7 @@ document.querySelector("nav.tabs").onclick = (e) => {
   if (b) switchView(b.dataset.view);
 };
 
-/* ---------------- NGÔN NGỮ ---------------- */
-function renderLang() {
-  applyStaticI18n();
-  renderHeader();
-  renderChips();
-  renderTray();
-  renderSchedule();
-  Object.values(dayLayers).forEach((L_) =>
-    L_.markers.forEach((m) => m.setTooltipContent(tr(P[m._id], "name"))),
-  );
-  if (openedPlace) openPlace(openedPlace.id, openedPlace.dayId, false);
-}
-$("#btnLang").onclick = () => {
-  LANG = LANG === "vi" ? "en" : "vi";
-  try {
-    localStorage.setItem("hg-lang", LANG);
-  } catch (e) {}
-  renderLang();
-  toast(t("langName"));
-};
-
 /* ---------------- INIT ---------------- */
-applyStaticI18n();
 renderHeader();
 renderChips();
 CONFIG.days.forEach(buildDay);
