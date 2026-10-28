@@ -662,9 +662,18 @@ const CONFIG = {
           maps: "https://maps.app.goo.gl/8KCDYoZYud9T7Dp9A",
           rating: 4.8,
           images: [
-            { src: "images/food-ethnic-house-1.jpg", caption: "Thực đơn: cá, dê, ngựa" },
-            { src: "images/food-ethnic-house-2.jpg", caption: "Thực đơn: cơm rang, đồ ăn nhanh" },
-            { src: "images/food-ethnic-house-3.jpg", caption: "Thực đơn: các món lẩu" },
+            {
+              src: "images/food-ethnic-house-1.jpg",
+              caption: "Thực đơn: cá, dê, ngựa",
+            },
+            {
+              src: "images/food-ethnic-house-2.jpg",
+              caption: "Thực đơn: cơm rang, đồ ăn nhanh",
+            },
+            {
+              src: "images/food-ethnic-house-3.jpg",
+              caption: "Thực đơn: các món lẩu",
+            },
           ],
         },
         {
@@ -674,7 +683,10 @@ const CONFIG = {
           note: "Món kiểu Tây",
           images: [
             { src: "images/food-gac-bep-1.jpg", caption: "Thực đơn: pizza" },
-            { src: "images/food-gac-bep-2.jpg", caption: "Thực đơn: mì Ý, phở rau củ" },
+            {
+              src: "images/food-gac-bep-2.jpg",
+              caption: "Thực đơn: mì Ý, phở rau củ",
+            },
           ],
         },
         {
@@ -692,17 +704,30 @@ const CONFIG = {
       area: "Mèo Vạc",
       spots: [
         {
-          dishes: ["Cơm rang"],
-          name: "Sơn cơm rang",
-          address: "Tổ 2, TT Mèo Vạc",
-          note: "Theo blog, chưa kiểm chứng. Có cơ sở 2 ở tổ 4",
+          dishes: ["Cơm rang", "Mì xào", "Miến xào"],
+          name: "Nhà hàng Thuỷ Tiên",
+          maps: "https://maps.app.goo.gl/CbwywQCg6bBSEV37A",
+          price: "Cơm rang, mì, miến 50–70k/đĩa",
+          address: "342 Đường Đường Hạnh Phúc, Tổ 4, Mèo Vạc,",
+          note: "Món dê ~300k, lợn ~250k/đĩa (giá viết tay mới trên thực đơn)",
+          images: [
+            {
+              src: "images/food-thuy-tien-1.jpg",
+              caption: "Thực đơn: cơm rang, mì xào, miến xào",
+            },
+            {
+              src: "images/food-thuy-tien-2.jpg",
+              caption: "Thực đơn: dê, lợn",
+            },
+          ],
         },
         {
-          dishes: ["Cơm", "Phở", "Lẩu"],
-          name: "Hạnh Lèng Quán",
-          address: "Chợ Mèo Vạc, TT Mèo Vạc",
-          hours: "5h–22h",
-          note: "Theo blog, chưa kiểm chứng",
+          dishes: ["Cơm mẹt địa phương"],
+          name: "Little Yen's Homestay",
+          address: "Làng H'Mông Pả Vi, Mèo Vạc",
+          maps: "https://maps.app.goo.gl/eWt6YRbHAswYoad37",
+          note: "Cách TT Mèo Vạc ~5 km, ngay trên đường từ Mã Pì Lèng xuống",
+          images: [{ src: "images/food-little-yen-1.jpg", caption: "Cơm mẹt" }],
         },
       ],
     },
@@ -733,16 +758,33 @@ const CONFIG = {
       area: "Quản Bạ (Tam Sơn)",
       spots: [
         {
-          dishes: ["Cá khe", "Rau rừng", "Cơm"],
-          name: "Nhà hàng Hương Độ",
-          address: "TT Tam Sơn, Quản Bạ",
-          note: "Theo blog, chưa kiểm chứng",
+          dishes: ["Cơm suất", "Cơm rang", "Mì xào"],
+          name: "Lan Anh Restaurant",
+          maps: "https://maps.app.goo.gl/eUXK3r1Fmi7e6LWz9",
+          price: "Cơm suất 50k · Cơm rang, mì xào 40k",
+          address: "Số nhà 192, Quản Bạ, Tuyên Quang, Việt Nam",
+          note: "Cách Cổng Trời Quản Bạ ~700 m",
+          images: [
+            { src: "images/food-lan-anh-1.jpg", caption: "Thực đơn" },
+            { src: "images/food-lan-anh-2.jpg", caption: "Bảng giá" },
+          ],
         },
         {
-          dishes: ["Cơm"],
-          name: "Nhà hàng Huy Định",
-          address: "Tổ 3, TT Tam Sơn, Quản Bạ",
-          note: "Theo blog, chưa kiểm chứng. Gần sân bóng huyện",
+          dishes: ["Nhiều món"],
+          name: "Nhà Hàng Lợi Hợp",
+          maps: "https://maps.app.goo.gl/4cAAXEUVoiremhtM9",
+          address: "96 Tổ 1, Quản Bạ, Tuyên Quang, Việt Nam",
+          note: "Nhà hàng lớn. Cách Lan Anh ~300 m",
+        },
+        {
+          dishes: ["Lẩu gà", "Gà rang muối", "Mì xào bò"],
+          name: "Dương Công Quán",
+          maps: "https://maps.app.goo.gl/nt9PhsnhnZPAFJ3J7",
+          address: "58 Bà Triệu, Quản Bạ, Tuyên Quang 20356, Việt Nam",
+          note: "Nhiều món, nhà hàng sạch sẽ. Nhận cơm đặt theo yêu cầu",
+          images: [
+            { src: "images/food-duong-cong-quan-1.jpg", caption: "Thực đơn" },
+          ],
         },
       ],
     },
