@@ -269,17 +269,17 @@ const CONFIG = {
       images: [{ src: "images/hs1.jpg" }],
     },
     hs2: {
-      name: "Du Gia Yen Homestay",
+      name: "Falls Junction Homestay",
       type: "stay",
-      lat: 22.929057,
-      lng: 105.2217831,
-      desc: "Homestay đêm 2 ở làng Du Già, cạnh hồ nước giữa thung lũng.",
+      lat: 22.9352691,
+      lng: 105.2077648,
+      desc: "Homestay đêm 2 ở Du Già, nằm giữa làng và thác Du Già (cách mỗi nơi ~1,5 km).",
       info: [
         ["Đêm", "Đêm 2 (ngày 2 → ngày 3)"],
-        ["SĐT", "0985919345"],
-        ["Giá", "1000000 VNĐ"],
+        ["SĐT", "0353765626"],
+        ["Giá", "1.000.000 VNĐ"],
       ],
-      images: [{ src: "images/hs2.jpg" }],
+      images: [{ src: "images/hs2.jpg" }, { src: "images/hs2-2.jpg" }],
     },
   },
 
@@ -738,10 +738,10 @@ const CONFIG = {
       spots: [
         {
           dishes: ["Mâm cơm tại homestay"],
-          name: "Du Gia Yen Homestay",
-          address: "Làng Du Già",
-          maps: "https://maps.app.goo.gl/Jr5eiE7dTRF1AxnXA",
-          note: "Nhiều homestay Du Già nấu bữa tối theo đặt trước (~120k/người theo blog) – hỏi trước khi đến",
+          name: "Falls Junction Homestay",
+          address: "Du Già, giữa làng và thác Du Già",
+          maps: "https://maps.app.goo.gl/XUBdeHg1t7zP8HUt6",
+          note: "Nhiều homestay Du Già nấu bữa tối theo đặt trước (~120k/người theo blog) – gọi 0353765626 hỏi trước",
           images: [{ src: "images/hs2.jpg" }],
         },
         {
