@@ -224,6 +224,18 @@ const CONFIG = {
       lat: 22.9941,
       lng: 105.0881,
     },
+    via_mien_a: {
+      name: "Đường ven sông Miện (gần Lùng Tám)",
+      type: "via", // nắn tuyến Lùng Tám → Hà Giang theo đường ven sông Miện, không qua Quản Bạ
+      lat: 23.023,
+      lng: 105.0538,
+    },
+    via_mien_b: {
+      name: "Đường ven sông Miện",
+      type: "via",
+      lat: 22.949,
+      lng: 105.025,
+    },
     lungtam: {
       name: "Làng dệt lanh Lùng Tám",
       type: "sight",
@@ -488,7 +500,7 @@ const CONFIG = {
     {
       id: "d3",
       label: "Ngày 3",
-      title: "Du Già → Hà Giang",
+      title: "Du Già → Lùng Tám → ven sông Miện → Hà Giang",
       color: "#2B8A3E",
       route: [
         "dugia",
@@ -496,8 +508,8 @@ const CONFIG = {
         "via_tl181a", // TL181 qua Đường Thượng
         "via_tl181b",
         "lungtam",
-        "quanba",
-        "bacsum",
+        "via_mien_a", // từ Lùng Tám xuôi đường ven sông Miện
+        "via_mien_b",
         "hagiang",
       ],
       extras: [],
@@ -532,29 +544,20 @@ const CONFIG = {
           note: "Bỏ qua nếu đến muộn",
         },
         {
-          time: "13:30",
-          end: "14:30",
-          title: "Ăn trưa tại Quản Bạ",
+          time: "13:15",
+          end: "13:45",
+          title: "Ăn trưa nhẹ dọc đường ở Lùng Tám",
           type: "eat",
-          place: "quanba",
-          note: "Thị trấn Tam Sơn, dưới chân Cổng Trời",
+          place: "lungtam",
         },
         {
-          time: "14:30",
-          title: "Xuất phát về TP. Hà Giang",
+          time: "13:45",
+          title: "Đi đường ven sông Miện về TP. Hà Giang",
           type: "move",
-          note: "~56 km qua đèo Bắc Sum, ~1h30",
+          note: "~54 km, ~1h45. Không qua Quản Bạ, nhập QL4C cách TP ~5 km",
         },
         {
-          time: "15:00",
-          end: "15:10",
-          title: "Đèo Bắc Sum",
-          type: "sight",
-          place: "bacsum",
-          note: "Dừng nhanh chụp ảnh. Đổ đèo về số thấp",
-        },
-        {
-          time: "16:00",
+          time: "15:30",
           title: "Về TP. Hà Giang, trả xe",
           type: "other",
           place: "hagiang",
@@ -754,7 +757,20 @@ const CONFIG = {
     },
     {
       day: "d3",
-      meal: "Ăn trưa · Ngày 3",
+      meal: "Ăn trưa nhẹ · Ngày 3",
+      area: "Lùng Tám",
+      spots: [],
+    },
+    {
+      day: "d3",
+      meal: "Ăn tối · Ngày 3",
+      area: "TP. Hà Giang",
+      spots: [],
+    },
+    {
+      // Ngày 3 không còn đi qua Quản Bạ — giữ lại làm dự phòng
+      day: "d3",
+      meal: "Dự phòng · Ngày 3 (không trên tuyến)",
       area: "Quản Bạ (Tam Sơn)",
       spots: [
         {
