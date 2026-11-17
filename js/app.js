@@ -110,7 +110,16 @@ $("#btnLayer").onclick = () => {
 let currentDay = "all";
 const dayLayers = {}; // id -> {casing, line, markers:[], stats}
 
-function pinIcon(day, n, dim) {
+// có ảnh → ảnh tròn nhỏ + số thứ tự ở góc; chưa có ảnh → chấm tròn đánh số
+function pinIcon(day, n, dim, id) {
+  const img = P[id] && P[id].images && P[id].images[0];
+  if (img)
+    return L.divIcon({
+      className: "",
+      iconSize: [60, 60],
+      iconAnchor: [30, 30],
+      html: `<div class="pin photo${dim ? " dim" : ""}" style="border-color:${day.color};background-image:url('${esc(img.src)}')"><span class="n" style="background:${day.color}">${n}</span></div>`,
+    });
   return L.divIcon({
     className: "",
     iconSize: [30, 30],
@@ -196,14 +205,14 @@ function buildDay(day, idx) {
   const markers = [];
   stopsOf(day).forEach((id, i) => {
     const m = L.marker([P[id].lat, P[id].lng], {
-      icon: pinIcon(day, i + 1),
+      icon: pinIcon(day, i + 1, false, id),
       riseOnHover: true,
     })
       .addTo(map)
       .bindTooltip(P[id].name, {
         className: "lbl",
         direction: "top",
-        offset: [0, -14],
+        offset: [0, P[id].images && P[id].images.length ? -30 : -14],
       })
       .on("click", () => openPlace(id, day.id));
     m._num = i + 1;
@@ -264,7 +273,7 @@ function applyDayStyle() {
         active ? m.addTo(map) : map.removeLayer(m);
         return;
       }
-      m.setIcon(pinIcon(d, m._num, !active));
+      m.setIcon(pinIcon(d, m._num, !active, m._id));
       m.setZIndexOffset(active ? 1000 : 0);
     });
   });

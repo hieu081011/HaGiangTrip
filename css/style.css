@@ -356,6 +356,29 @@ nav.tabs button[aria-selected="true"] {
 .pin.dim {
   opacity: 0.35;
 }
+/* điểm có ảnh: ảnh tròn, viền màu ngày, số thứ tự ở góc */
+.pin.photo {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+  background-color: #e8ece7;
+  background-size: cover;
+  background-position: center;
+}
+.pin.photo .n {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  line-height: 1;
+}
 .leaflet-tooltip.lbl {
   background: var(--ink);
   color: #fff;
