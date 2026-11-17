@@ -853,7 +853,28 @@ const CONFIG = {
       day: "d2",
       meal: "Ăn tối · Ngày 2",
       area: "Thị trấn Yên Minh",
-      spots: [],
+      spots: [
+        {
+          dishes: ["Cháo gà, tim cật, ấu tẩu", "Bún - Phở - Miến"],
+          name: "Quán ăn đêm Vững Châm",
+          maps: "https://maps.app.goo.gl/W3jESgxVfStLm1AN9",
+          note: "ĐT 0388342799. Cách Hoa Đá Homestay ~500 m. Có cả ốc hấp lá ngải, trứng vịt lộn",
+          images: [
+            { src: "images/food-vung-cham-1.jpg", caption: "Bảng món trong quán" },
+          ],
+        },
+        {
+          dishes: ["Mâm cơm đa dạng món", "Gà chiên", "Nem rán"],
+          name: "Bống Bang Homestay 2",
+          address: "214 Trần Hưng Đạo, Yên Minh",
+          maps: "https://maps.app.goo.gl/SrAzcmBH35U7S2Us5",
+          note: "ĐT 0852803803. Phục vụ đa dạng món. Cách Hoa Đá Homestay ~120 m",
+          images: [
+            { src: "images/food-bong-bang-1.jpg", caption: "Mâm cơm" },
+            { src: "images/food-bong-bang-2.jpg", caption: "Mâm cơm" },
+          ],
+        },
+      ],
     },
     {
       day: "d3",
