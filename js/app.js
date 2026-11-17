@@ -116,8 +116,8 @@ function pinIcon(day, n, dim, id) {
   if (img)
     return L.divIcon({
       className: "",
-      iconSize: [60, 60],
-      iconAnchor: [30, 30],
+      iconSize: [48, 48],
+      iconAnchor: [24, 24],
       html: `<div class="pin photo${dim ? " dim" : ""}" style="border-color:${day.color};background-image:url('${esc(img.src)}')"><span class="n" style="background:${day.color}">${n}</span></div>`,
     });
   return L.divIcon({
@@ -212,7 +212,7 @@ function buildDay(day, idx) {
       .bindTooltip(P[id].name, {
         className: "lbl",
         direction: "top",
-        offset: [0, P[id].images && P[id].images.length ? -30 : -14],
+        offset: [0, P[id].images && P[id].images.length ? -24 : -14],
       })
       .on("click", () => openPlace(id, day.id));
     m._num = i + 1;
